@@ -98,7 +98,7 @@ class AadhaarData
 
   function check_last()
   {
-    $query = 'SELECT * FROM ' . $this->table . ' WHERE 1 ORDER BY addedon DESC LIMIT 0,1';
+    $query = 'SELECT * FROM ' . $this->table . ' WHERE cust_id='.$cust_id.' ORDER BY addedon DESC LIMIT 0,1';
 
     $stmt = $this->conn->prepare($query);
 
@@ -137,12 +137,13 @@ class AadhaarData
     $time1 = date_format(date_create($this->addedon), 'Y-m-d') . " 00:00:00";
     $time2 = date_format(date_create($this->addedon), 'Y-m-d') . " 23:59:59";
 
-    $query = 'SELECT * FROM ' . $this->table . ' WHERE addedon >= :time1 AND addedon <= :time2 LIMIT 0,1';
+    $query = 'SELECT * FROM ' . $this->table . ' WHERE cust_id = :cust_id AND addedon >= :time1 AND addedon <= :time2 LIMIT 0,1';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
 
     // Bind ID
+    $stmt->bindParam(':cust_id', $cust_id);
     $stmt->bindParam(':time1', $time1);
     $stmt->bindParam(':time2', $time2);
 

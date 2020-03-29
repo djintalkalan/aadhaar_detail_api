@@ -17,6 +17,6 @@ $db = $database->connect();
 
 // Instantiate blog service object
 $aadhaarData = new AadhaarData($db);
-$customer = new Customer($db);
+$aadhaarData->id = isset($_GET['id']) ? $_GET['id'] : die();
 
 $result = $aadhaarData->check_last();

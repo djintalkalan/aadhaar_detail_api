@@ -254,19 +254,16 @@ class Admin
       if ($stmt->execute()) {
         return array(
           "error" => null,
-          "data" => "Successfully updated",
           "success" => true
         );
       }
 
       return array(
         "error" => $stmt->error,
-        "data" => null,
         "success" => true
       );
     } else  return array(
       "error" => "Wrong old password",
-      "data" => null,
       "success" => false
     );
   }
