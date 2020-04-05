@@ -98,7 +98,7 @@ class AadhaarData
 
   function check_last()
   {
-    $query = 'SELECT * FROM ' . $this->table . ' WHERE cust_id='.$cust_id.' ORDER BY addedon DESC LIMIT 0,1';
+    $query = 'SELECT * FROM ' . $this->table . ' WHERE cust_id= '. $this->cust_id . ' ORDER BY addedon DESC LIMIT 0,1';
 
     $stmt = $this->conn->prepare($query);
 
@@ -143,7 +143,7 @@ class AadhaarData
     $stmt = $this->conn->prepare($query);
 
     // Bind ID
-    $stmt->bindParam(':cust_id', $cust_id);
+    $stmt->bindParam(':cust_id', $this->cust_id);
     $stmt->bindParam(':time1', $time1);
     $stmt->bindParam(':time2', $time2);
 
